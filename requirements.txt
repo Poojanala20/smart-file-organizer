@@ -1,0 +1,3 @@
+flask
+gunicorn
+python-magic  # optional, useful if you plan to detect MIME types
