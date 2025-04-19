@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: smart-file-organizer
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn api.app:app
+    envVars:
+      - key: PORT
+        value: 10000  # Render sets its own port anyway, just leave it

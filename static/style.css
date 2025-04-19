@@ -1,0 +1,131 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Light Theme Variables */
+:root {
+  --bg-color: #f4faff;
+  --text-color: #333;
+  --button-bg: #007acc;
+  --button-hover: #005f99;
+  --card-bg: white;
+  --flash-success-bg: #d4edda;
+  --flash-error-bg: #f8d7da;
+  --flash-border-success: #66bb6a;
+  --flash-border-error: #ef5350;
+}
+
+/* Dark Mode Overrides (manual toggle only) */
+body.dark-mode {
+  --bg-color: #1e1e1e;
+  --text-color: #f4faff;
+  --button-bg: #0a84ff;
+  --button-hover: #0060df;
+  --card-bg: #2a2a2a;
+  --flash-success-bg: #2e7d32;
+  --flash-error-bg: #c62828;
+  --flash-border-success: #66bb6a;
+  --flash-border-error: #ef5350;
+}
+
+/* Body */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card Container */
+.container {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+}
+
+/* Heading */
+.container h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Paragraph */
+.container p {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* File input */
+input[type="file"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* Submit button */
+button {
+  padding: 12px 25px;
+  border: none;
+  background-color: var(--button-bg);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+/* Flash messages */
+.flash-container {
+  margin-bottom: 20px;
+}
+
+.flash {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid;
+}
+
+.flash.success {
+  background-color: var(--flash-success-bg);
+  border-color: var(--flash-border-success);
+  color: #155724;
+}
+
+.flash.error {
+  background-color: var(--flash-error-bg);
+  border-color: var(--flash-border-error);
+  color: #721c24;
+}
