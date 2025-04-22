@@ -1,5 +1,6 @@
 import os
 import zipfile
+from io import BytesIO
 from flask import Flask, request, render_template, flash, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 
@@ -52,14 +53,6 @@ def upload_file():
                 success = True
 
         if success:
-            # Create a zip of the organized files
-            zip_path = 'organized.zip'
-            with zipfile.ZipFile(zip_path, 'w') as zipf:
-                for root, _, files in os.walk(UPLOAD_FOLDER):
-                    for file in files:
-                        file_path = os.path.join(root, file)
-                        arcname = os.path.relpath(file_path, UPLOAD_FOLDER)
-                        zipf.write(file_path, arcname)
             flash("✅ Files uploaded and organized successfully!", "success")
             return redirect(url_for('upload_file', download='true'))
         else:
@@ -70,7 +63,19 @@ def upload_file():
 
 @app.route('/download')
 def download():
-    return send_file('organized.zip', as_attachment=True)
+    memory_file = BytesIO()
+    with zipfile.ZipFile(memory_file, 'w') as zipf:
+        for root, _, files in os.walk(UPLOAD_FOLDER):
+            for file in files:
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, UPLOAD_FOLDER)
+                zipf.write(file_path, arcname)
+    memory_file.seek(0)
+    return send_file(
+        memory_file,
+        download_name='organized.zip',
+        as_attachment=True
+    )
 
 if __name__ == "__main__":
     from waitress import serve
