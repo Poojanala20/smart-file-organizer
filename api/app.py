@@ -2,7 +2,12 @@ import os
 from flask import Flask, request, render_template, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder='../templates',
+    static_folder='../static'
+)
+
 app.secret_key = 'your_secret_key_here'  # Replace with a strong secret
 
 UPLOAD_FOLDER = 'organized_files'
