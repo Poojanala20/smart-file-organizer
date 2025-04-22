@@ -30,6 +30,10 @@
       <input type="file" name="files" multiple required>
       <button type="submit">Upload and Organize</button>
     </form>
+{% if download %}
+  <a href="{{ url_for('download') }}" class="download-btn">⬇️ Download Organized Files</a>
+{% endif %}
+
   </div>
 
   <!-- 🌗 Theme Toggle Script -->
